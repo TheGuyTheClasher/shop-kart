@@ -3,6 +3,7 @@ import axios from 'axios'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Product from "../components/Product";
+import { Helmet } from 'react-helmet-async'
 
 // reducer function is used as the replacement of the useState hook, 
 // A reducer function is where you will put your state logic. It takes two arguments, the current state and the action object, and it returns the next state.
@@ -46,6 +47,9 @@ const HomeScreen = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>shopkart</title>
+            </Helmet>
             <h1>Featured products</h1>
             <div className="products">
                 {loading ? <div>Loading...</div>
@@ -53,6 +57,7 @@ const HomeScreen = () => {
                         : <Row>
                             {products.map((product) => (
                                 <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
+                                    {/* {product.slug} */}
                                     <Product product={product}></Product>
                                 </Col>
                             ))}

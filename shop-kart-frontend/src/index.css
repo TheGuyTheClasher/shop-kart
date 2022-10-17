@@ -51,3 +51,7 @@ main {
 .rating span {
   color: #333f44;
 }
+
+.img-large {
+  max-width: 100%;
+}
