@@ -16,6 +16,14 @@ main {
   flex: 1;
 }
 
+.btn-primary {
+  background-color: #70c6c7;
+}
+
+.btn-primary:hover {
+  background-color: #37aa9c;
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -38,4 +46,8 @@ main {
 
 .productInfo a {
   text-decoration: none;
+}
+
+.rating span {
+  color: #333f44;
 }
