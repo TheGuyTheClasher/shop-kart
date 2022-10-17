@@ -26,7 +26,7 @@ function App() {
               <Nav className="me-auto">
                 <Link to="/cart" className="nav-link">
                   Cart {
-                    cart.cartItems.length > 0 && (<Badge pill bg="danger">{cart.cartItems.length}</Badge>)
+                    cart.cartItems.length > 0 && (<Badge pill bg="danger">{cart.cartItems.reduce((acc, currentItem) => acc + currentItem.quantity, 0)}</Badge>)
                   }
                 </Link>
               </Nav>
