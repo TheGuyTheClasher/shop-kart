@@ -69,3 +69,14 @@ main {
   right: -15px;
   bottom: 20px;
 }
+
+.in-cart-btn {
+  background-color: #fac0e1;
+  color: black;
+}
+
+.out-of-stock {
+  /* opacity: 0.3;
+  cursor: not-allowed; */
+  border: 1 px solid blue !important;
+}

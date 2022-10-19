@@ -13,6 +13,28 @@ import { Link } from 'react-router-dom'
 const CartScreen = () => {
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { cart: { cartItems } } = state
+
+    const handleMinusFromCart = (product) => {
+
+        const getItemQuantity = cartItems.find((item) => item._id === product._id)
+        const quantity = getItemQuantity.quantity - 1;
+
+        ctxDispatch({ type: 'CART_REMOVE_ONE', payload: { id: product._id, quantity: quantity } })
+    }
+
+    const handleAddFromCart = (product) => {
+
+        const getItemQuantity = cartItems.find((item) => item._id === product._id)
+        const quantity = getItemQuantity.quantity + 1;
+
+        ctxDispatch({ type: 'CART_ADD_ONE', payload: { id: product._id, quantity: quantity } })
+
+    }
+
+    function handleDeleteFromCart(product) {
+        ctxDispatch({ type: 'CART_REMOVE_ITEM', payload: { product } });
+    }
+
     return (
         <div>
             <Helmet>
@@ -35,13 +57,13 @@ const CartScreen = () => {
                                             <Link to={`/product/${item.slug}`}>{item.name}</Link>
                                         </Col>
                                         <Col md={3}>
-                                            <Button variant='light' disabled={item.quantity === 1}><i className='fas fa-minus-circle'></i></Button>{' '}
+                                            <Button variant='light' disabled={item.quantity === 1} onClick={() => handleMinusFromCart(item)}><i className='fas fa-minus-circle'></i></Button>{' '}
                                             <span>{item.quantity}</span>{' '}
-                                            <Button variant='light' disabled={item.quantity > item.countInStock}><i className='fas fa-plus-circle'></i></Button>
+                                            <Button variant='light' disabled={item.quantity >= item.countInStock} onClick={() => handleAddFromCart(item)}><i className='fas fa-plus-circle'></i></Button>
                                         </Col>
                                         <Col md={3}>₹{item.price}</Col>
                                         <Col md={2}>
-                                            <Button variant="light">
+                                            <Button variant="light" onClick={() => handleDeleteFromCart(item)}>
                                                 <i className='fas fa-trash'></i>
                                             </Button>
                                         </Col>

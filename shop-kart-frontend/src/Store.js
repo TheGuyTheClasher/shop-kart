@@ -15,6 +15,33 @@ const reducer = (state, action) => {
             return {
                 ...state, cart: { ...state.cart, cartItems }
             };
+        case 'CART_REMOVE_ITEM':
+            const itemToRemove = action.payload;
+            const filteredCartItems = state.cart.cartItems.filter((item) => item._id !== itemToRemove.product._id)
+            state.cart.cartItems = filteredCartItems
+            return {
+                ...state, cart: { ...state.cart, filteredCartItems }
+            };
+        case 'CART_REMOVE_ONE':
+            const idToRemove = action.payload.id;
+            const newQuantity = action.payload.quantity;
+
+            const foundCartItemIndex = state.cart.cartItems.findIndex((item) => item._id === idToRemove)
+            state.cart.cartItems[foundCartItemIndex].quantity = newQuantity;
+
+            return {
+                ...state
+            }
+        case 'CART_ADD_ONE':
+            const idToAdd = action.payload.id;
+            const newQty = action.payload.quantity;
+
+            const CartItemIndex = state.cart.cartItems.findIndex((item) => item._id === idToAdd)
+            state.cart.cartItems[CartItemIndex].quantity = newQty;
+
+            return {
+                ...state
+            }
         default:
             return state;
     }
@@ -31,5 +58,9 @@ export function StoreProvider(props) {
 
     const value = { state, dispatch };
 
-    return <Store.Provider value={value}>{props.children}</Store.Provider>
+    return (
+        <Store.Provider value={value}>
+            {props.children}
+        </Store.Provider>
+    )
 }
