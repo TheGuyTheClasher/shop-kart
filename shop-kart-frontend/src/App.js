@@ -8,6 +8,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Badge from 'react-bootstrap/esm/Badge';
 import { useContext } from 'react'
 import { Store } from './Store';
+import CartScreen from './screens/CartScreen';
 
 function App() {
   const { state } = useContext(Store)
@@ -25,8 +26,8 @@ function App() {
               </LinkContainer>
               <Nav className="me-auto">
                 <Link to="/cart" className="nav-link">
-                  Cart {
-                    cart.cartItems.length > 0 && (<Badge pill bg="danger">{cart.cartItems.reduce((acc, currentItem) => acc + currentItem.quantity, 0)}</Badge>)
+                  Cart <i className="fas fa-shopping-cart"></i>{
+                    cart.cartItems.length > 0 && (<Badge className='cart-pill' pill bg="danger">{cart.cartItems.reduce((acc, currentItem) => acc + currentItem.quantity, 0)}</Badge>)
                   }
                 </Link>
               </Nav>
@@ -38,6 +39,7 @@ function App() {
             <Routes>
               <Route path='/product/:slug' element={<ProductScreen />} />
               <Route path="/" element={<HomeScreen />} />
+              <Route path="/cart" element={<CartScreen />} />
             </Routes>
           </Container>
         </main>

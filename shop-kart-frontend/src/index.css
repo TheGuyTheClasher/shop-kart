@@ -55,3 +55,17 @@ main {
 .img-large {
   max-width: 100%;
 }
+
+.img-thumbnail {
+  height: 80px;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.cart-pill {
+  position: absolute;
+  right: -15px;
+  bottom: 20px;
+}

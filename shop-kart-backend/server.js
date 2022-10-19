@@ -23,7 +23,6 @@ app.get(`/api/products/slug/:slug`, (req, res) => {
 })
 
 app.get('/api/products/:id', (req, res) => {
-    // console.log(req.params)
     const product = data.products.find((product) => product._id == req.params.id);
     console.log(product)
     if (product) {
